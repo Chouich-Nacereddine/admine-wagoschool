@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(req: Request) {
+export async function POST() {
   const exp = Math.round(Date.now() / 1000) + 60 * 130; 
   const options = {
     properties: {
