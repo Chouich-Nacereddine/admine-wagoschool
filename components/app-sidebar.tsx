@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -9,14 +10,14 @@ import {
 import { useSelectedItem } from "../context/SelectedComponentContext";
 import { useState } from "react";
 
-export function AppSidebar({ items }) {
+export function AppSidebar({ items }:{ items:any }) {
   const [isClicked, setIsClicked] = useState(0);
   const { setSelectedItem } = useSelectedItem();
   return (
     <Sidebar className="text-[#0C0A03] border-r-8 border-black">
       <SidebarContent className="self-center ">
         <SidebarMenu className="mt-16 flex flex-col gap-10 ">
-          {items.map((item, index) => (
+          {items.map((item:any, index:any) => (
             <SidebarMenuItem
               className=""
               key={index}

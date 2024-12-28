@@ -6,9 +6,8 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // Step 1: Import QueryClient
 import {
   BellRing,
-  GraduationCap,
-  Headset,
   MonitorPlay,
+  SlidersHorizontal,
   UserRoundCog,
 } from "lucide-react";
 import "./globals.css";
@@ -22,6 +21,7 @@ export default function RootLayout({
     { title: "Tutors", icon: UserRoundCog },
     { title: "Notifications", icon: BellRing },
     { title: "Rooms", icon: MonitorPlay },
+    { title: "Classes", icon: SlidersHorizontal },
   ];
 
   // Step 2: Initialize the QueryClient

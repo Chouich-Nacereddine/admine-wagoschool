@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -18,14 +19,14 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
 const CreateRoom = () => {
-  const [students, setStudents] = useState([]);
-  const [tutors, setTutors] = useState([]);
+  const [students, setStudents] = useState<any[]>([]);
+  const [tutors, setTutors] = useState<any[]>([]);
   const [selectedTutor, setSelectedTutor] = useState(null); // Store tutor ID
   const [selectedStudent, setSelectedStudent] = useState(null); // Store student ID
   const [openTutor, setOpenTutor] = useState(false);
   const [openStudent, setOpenStudent] = useState(false);
-  const [notificationContent, setNotificationContent] = useState("");
-  const [roomName, setRoomName] = useState("");
+  // const [notificationContent, setNotificationContent] = useState("");
+  // const [roomName, setRoomName] = useState("");
 
   // Fetch data from Supabase
   useEffect(() => {
@@ -51,7 +52,7 @@ const CreateRoom = () => {
           { id: null, full_name: "No Students" },
           ...studentData,
         ]);
-      } catch (error) {
+      } catch (error:any) {
         console.error("Error fetching data:", error.message);
       }
     };
@@ -59,7 +60,7 @@ const CreateRoom = () => {
     fetchData();
   }, []);
 
-  const sendNotification = async (notification) => {
+  const sendNotification = async (notification:any) => {
     try {
       // Create a new notification object
       const newNotification = {
@@ -153,7 +154,7 @@ const CreateRoom = () => {
 
         if (updateStudentError) throw updateStudentError;
       }
-    } catch (err) {
+    } catch (err:any) {
       console.error("Error sending notification:", err.message);
     }
   };
@@ -186,8 +187,8 @@ const CreateRoom = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-5">
-      <div className="w-[50vw] flex items-center justify-center gap-5">
+    <div className="w-full flex flex-col gap-5 px-5 sm:px-0">
+      <div className="sm:w-[50vw] flex items-center justify-center gap-5">
         {/* Tutors Dropdown */}
         <Popover open={openTutor} onOpenChange={setOpenTutor}>
           <PopoverTrigger asChild>

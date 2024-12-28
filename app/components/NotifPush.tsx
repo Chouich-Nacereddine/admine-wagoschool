@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -21,8 +22,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/lib/supabaseClient";
 
 const NotifPush = () => {
-  const [students, setStudents] = useState([]);
-  const [tutors, setTutors] = useState([]);
+  const [students, setStudents] = useState<any[]>([]);
+  const [tutors, setTutors] = useState<any[]>([]);
   const [selectedTutor, setSelectedTutor] = useState(null); // Store tutor ID
   const [selectedStudent, setSelectedStudent] = useState(null); // Store student ID
   const [openTutor, setOpenTutor] = useState(false);
@@ -45,7 +46,7 @@ const NotifPush = () => {
 
         setTutors([{ id: "All Tutors", full_name: "All Tutors" }, { id: null, full_name: "No Tutors" }, ...tutorData]);
         setStudents([{ id: "All Students" , full_name: "All Students" }, { id: null, full_name: "No Students" }, ...studentData]);
-      } catch (error) {
+      } catch (error:any) {
         console.error("Error fetching data:", error.message);
       }
     };
@@ -53,7 +54,7 @@ const NotifPush = () => {
     fetchData();
   }, []);
 
-  const sendNotification = async (notification) => {
+  const sendNotification = async (notification:any) => {
     try {
       // Create a new notification object
       const newNotification = {
@@ -150,15 +151,15 @@ const NotifPush = () => {
 
       console.log("Notification sent successfully!");
       alert("Notifications sent successfully!");
-    } catch (err) {
+    } catch (err:any) {
       console.error("Error sending notification:", err.message);
       alert("Error sending notification:");
     }
   };
 
   return (
-    <div className="w-full flex flex-col gap-5">
-      <div className="w-[50vw] flex items-center justify-center gap-5">
+    <div className="w-full flex flex-col gap-5 px-5 sm:px-0">
+      <div className="sm:w-[50vw] flex items-center justify-center gap-5">
         {/* Tutors Dropdown */}
         <Popover open={openTutor} onOpenChange={setOpenTutor}>
           <PopoverTrigger asChild>
@@ -252,7 +253,7 @@ const NotifPush = () => {
         </Popover>
       </div>
       <Textarea
-        className="bg-white border-2 border-black min-h-96"
+        className="bg-white border-2 border-black min-h-40 sm:min-h-96"
         value={notificationContent}
         onChange={(e) => setNotificationContent(e.target.value)}
       />
